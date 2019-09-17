@@ -2,7 +2,7 @@
 
 Felis çok yönlü bir indiricidir.
 
-### Kurulum;
+## Kurulum;
 `git clone https://github.com/kernelblog/Felis.git`<br>
 `cd felis`<br>
 `sudo sh kur.sh`
@@ -10,6 +10,8 @@ Felis çok yönlü bir indiricidir.
 ## Gerekli Araçlar
 **ffmpeg**
 
+## Proje Websitesi;
+https://felis.kernelblog.org
 
 ## İletişim
 
