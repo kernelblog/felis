@@ -27,11 +27,14 @@ class distro(object):
         self.isim = self.isim.lower()
         print("\n1- Aracı Parrot Linux depolarından ara.\n2- Aracı Kali Linux depolarından ara.\n3- Aracı her iki depodan da ara.")
         while True:
-            self.distrosecim = int(input("\nDepo seçiniz (Sayısal): "))
-            if self.distrosecim < 1 or self.distrosecim > 3:
-                print("Lütfen 1 ile 3 arasında bir seçim yapınız!")
-            else:
-                break
+            try:
+                self.distrosecim = int(input("\nDepo seçiniz (Sayısal): "))
+                if self.distrosecim < 1 or self.distrosecim > 3:
+                    print("Lütfen 1 ile 3 arasında bir seçim yapınız!")
+                else:
+                    break
+            except ValueError as e:
+                print("Sayısal diyoruz hocam!")
         if self.distrosecim == 1:
             self.distrolar.append(self.paradr)
         elif self.distrosecim == 2:
@@ -50,13 +53,14 @@ class distro(object):
         f.write(self.veri.read())
         f.close()
         os.system("sudo dpkg -i "+self.isimler4[self.secim-1])
+        os.system("sudo apt --fix-broken install")
+        print("\nAraç başarıyla indirildi ve yüklendi.")
         self.soru = input("\nİndirilen dosya saklansın mı? E/H: ")
         if self.soru == "E" or self.soru == "e":
-            print("\nDosyanız şu dizine kaydedildi ---> "+os.getcwd()+"\\"+self.isimler4[self.secim-1])
+            print("\nDosyanız şu dizine kaydedildi ---> "+os.getcwd()+"/"+self.isimler4[self.secim-1])
             pass
         else:
             os.system("rm "+self.isimler4[self.secim-1])
-        print("\nAraç başarıyla indirildi ve yüklendi.")
         print("Vazgeçme :D.\n")
         sys.exit(0)
 
@@ -78,18 +82,24 @@ class distro(object):
         self.sirala(self.isimler4, 1)
         print("""\n1- Felis ile indir.\n2- Listeye dön.\n""")
         while True:
-            self.secenek = int(input("İşlem seçiniz (Sayısal): "))
-            if self.secenek > 2 or self.secenek < 1:
-                print("Hatalı girdi!\n")
-            else:
-                break
-        if self.secenek == 1:
-            while True:
-                self.secim = int(input("\nİndirmek istediğiniz dosyayı seçiniz (Sayısal): "))
-                if self.secim < 1 or self.secim > len(self.isimler4):
-                    print("Sonuç sayısından fazla ya da eksik bir sayı girdiniz!")
+            try:
+                self.secenek = int(input("İşlem seçiniz (Sayısal): "))
+                if self.secenek > 2 or self.secenek < 1:
+                    print("Hatalı girdi!\n")
                 else:
                     break
+            except ValueError as e:
+                print("Sayısal diyoruz hocam!")
+        if self.secenek == 1:
+            while True:
+                try:
+                    self.secim = int(input("\nİndirmek istediğiniz dosyayı seçiniz (Sayısal): "))
+                    if self.secim < 1 or self.secim > len(self.isimler4):
+                        print("Sonuç sayısından fazla ya da eksik bir sayı girdiniz!")
+                    else:
+                        break
+                except ValueError as e:
+                    print("Sayısal diyoruz hocam!")
             self.felisindir()
         else:
             self.sirala(self.isimler1, 0)
@@ -107,11 +117,14 @@ class distro(object):
             print(t)
             if durum == 0:
                 while True:
-                    self.secim = int(input("\nSeçiminizi girin (Sayısal): "))
-                    if self.secim > sz or self.secim < 1:
-                        print("Sonuç sayısından fazla ya da eksik bir sayı girdiniz!")
-                    else:
-                        break
+                    try:
+                        self.secim = int(input("\nSeçiminizi girin (Sayısal): "))
+                        if self.secim > sz or self.secim < 1:
+                            print("Sonuç sayısından fazla ya da eksik bir sayı girdiniz!")
+                        else:
+                            break
+                    except ValueError as e:
+                        print("Sayısal diyoruz hocam!")
                 self.listele()
             else:
                 pass
