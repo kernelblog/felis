@@ -99,6 +99,9 @@ class github(object):
 if __name__ == '__main__':
     k = github()
     try:
-        k.basla()
-    except EOFError as e:
-        print("\nİyi Akşamlarr :D\n")
+        try:
+            k.basla()
+        except EOFError as e:
+            print("\n\nİyi Akşamlarr :D")
+    except KeyboardInterrupt as e:
+        pass

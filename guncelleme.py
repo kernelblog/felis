@@ -12,13 +12,15 @@ url = "https://felis.kernelblog.org/tarih.txt"
 url2 = "https://felis.kernelblog.org/felis/felis.zip"
 context = ssl._create_unverified_context()
 
+os.system("sudo pip3 install youtube-dl bs4 PrettyTable requests --upgrade")
+
 try:
 	url_oku = urllib.request.urlopen(url)
 except urllib.error.URLError as e:
 	print("\nLütfen İnternet Bağlantınızı Kontrol Ediniz!\n")
 	sys.exit(0)
 soup = BeautifulSoup(url_oku, 'html.parser')
-if str(soup) == "22/09/2019":
+if str(soup) == "24/09/2019":
 	print("\nFelis Aracı Güncel.\n")
 else:
 	veri = urllib.request.urlopen(url2, context = context)
@@ -39,14 +41,17 @@ else:
 	os.system("sudo rm /usr/share/felis/felis.py")
 	os.system("sudo rm /usr/share/felis/mp.py")
 	os.system("sudo rm /usr/share/felis/githubmodul.py")
+	os.system("sudo rm /usr/share/felis/distrorepo.py")
 	os.system("sudo mv "+os.getcwd()+"/felis/felis /usr/bin/")
 	os.system("sudo mv "+os.getcwd()+"/felis/felis.py /usr/share/felis/")
 	os.system("sudo mv "+os.getcwd()+"/felis/mp.py /usr/share/felis/")
 	os.system("sudo mv "+os.getcwd()+"/felis/githubmodul.py /usr/share/felis/")
+	os.system("sudo mv "+os.getcwd()+"/felis/distrorepo.py /usr/share/felis/")
 	os.system("sudo chmod 755 /usr/bin/felis")
 	os.system("sudo chmod 755 /usr/share/felis/felis.py")
 	os.system("sudo chmod 755 /usr/share/felis/mp.py")
 	os.system("sudo chmod 755 /usr/share/felis/githubmodul.py")
+	os.system("sudo chmod 755 /usr/share/felis/distrorepo.py")
 	print("\nFelis Aracınız Başarıyla Güncellenmiştir.\n")
 	os.system("sudo mv "+os.getcwd()+"/felis/guncelleme.py /usr/share/felis/")
 	os.system("rm -r felis")
