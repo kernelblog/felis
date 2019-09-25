@@ -11,6 +11,11 @@ import tarfile
 import requests
 import ssl
 
+def yardim():
+	print("\nKullanım: felis [klon URL, -y, -g, -git, -depo, -s, -mp3, -mp4]")
+	print("\n-y: Felis'in kullanımını ve parametreleri gösterir.\n-g: Felis'in güncellemelerini kontrol eder.\n-git: Github üzerinden araç arama moduna geçmenizi sağlar.\n-depo: Kali Linux ve Parrot Linux depoları üzerinden araç arama moduna geçmenizi sağlar.\n-s: Felis'i siler.\nklon: Araç indirme parametresidir.\n-mp3 şarkı_adı: Verilen şarkının mp3 dosyası indirir.\n-mp4 şarkı_adı: Verilen şarkının mp4 dosyası indirir.\n\nklon parametresi ile indirilecek dosya .zip, .deb veya .tar.gz uzantılı olmalıdır. İsterseniz klon parametresi ile GitHub'dan repo da indirebilirsiniz.\n")
+	print("<======KernelBlog.org======>\nKernelBlog Developer Team\nKernelBlog Geliştirici Ekibi\n")
+
 #Ana Bölüm
 def internet_kontrol():
     url="http://www.google.com/"
@@ -23,10 +28,8 @@ def internet_kontrol():
 
 internet_kontrol()
 
-if sys.argv[1]=="-y":
-	print("\nKullanım: felis [klon URL, -y, -g, -git, -depo, -s, -mp3, -mp4]")
-	print("\n-y: Felis'in kullanımını ve parametreleri gösterir.\n-g: Felis'in güncellemelerini kontrol eder.\n-git: Github üzerinden araç arama moduna geçmenizi sağlar.\n-depo: Kali Linux ve Parrot Linux depoları üzerinden araç arama moduna geçmenizi sağlar.\n-s: Felis'i siler.\nklon: Araç indirme parametresidir.\n-mp3 şarkı_adı: Verilen şarkının mp3 dosyası indirir.\n-mp4 şarkı_adı: Verilen şarkının mp4 dosyası indirir.\n\nklon parametresi ile indirilecek dosya .zip, .deb veya .tar.gz uzantılı olmalıdır. İsterseniz klon parametresi ile GitHub'dan repo da indirebilirsiniz.\n")
-	print("<======KernelBlog.org======>\nKernelBlog Developer Team\nKernelBlog Geliştirici Ekibi\n")
+if len(sys.argv) < 2 or sys.argv[1]=="-y":
+		yardim()
 
 elif sys.argv[1]=="-g":
 	os.system("python3 /usr/share/felis/guncelleme.py")
@@ -133,3 +136,6 @@ elif sys.argv[1]=="klon":
         print("\nFelis'ten Çıkılıyor.")
     else:
         pass
+
+else:
+        yardim()

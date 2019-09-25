@@ -4,30 +4,4 @@ then
 	EXEC_ROOT=$PREFIX
 fi
 
-if [[ $1 == "-y" ]]; then
-  python3 $EXEC_ROOT/share/felis/felis.py $1
-
-elif [[ $1 == "klon" ]]; then
-  python3 $EXEC_ROOT/share/felis/felis.py $1 $2
-
-elif [[ $1 == "-mp3" ]]; then
-  python3 $EXEC_ROOT/share/felis/felis.py $1 $2
-
-elif [[ $1 == "-mp4" ]]; then
-  python3 $EXEC_ROOT/share/felis/felis.py $1 $2
-
-elif [[ $1 == "-g" ]]; then
-  python3 $EXEC_ROOT/share/felis/felis.py $1
-
-elif [[ $1 == "-s" ]]; then
-  python3 $EXEC_ROOT/share/felis/felis.py $1
-
-elif [[ $1 == "-git" ]]; then
-  python3 $EXEC_ROOT/share/felis/felis.py $1
-
-elif [[ $1 == "-depo" ]]; then
-  python3 $EXEC_ROOT/share/felis/felis.py $1
-
-else
-  python3 $EXEC_ROOT/share/felis/felis.py -y
-fi
+python3 $EXEC_ROOT/share/felis/felis.py $@
