@@ -1,4 +1,4 @@
-if [ $(id -g) -ne 0 ]
+if [ $(id -g) -ne 0 ] || [ ! -n $PREFIX ]
 then
 	echo "Bu komutu sadece root erişimiyle çalıştırabilirsiniz"
 	exit 1
