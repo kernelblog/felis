@@ -12,7 +12,14 @@ url = "https://felis.kernelblog.org/tarih.txt"
 url2 = "https://felis.kernelblog.org/felis/felis.zip"
 context = ssl._create_unverified_context()
 
-os.system("sudo pip3 install youtube-dl bs4 PrettyTable requests --upgrade")
+prefix=os.getenv("PREFIX","")
+termux=len(prefix) > 2
+if not termux:
+	prefix="/usr"
+
+sudo="" if termux else "sudo "
+
+os.system(sudo+"pip3 install beautifulsoup4 requests PrettyTable youtube_dl --upgrade")
 
 try:
 	url_oku = urllib.request.urlopen(url)
@@ -35,16 +42,16 @@ else:
 	for i in ls:
 		i = i.replace("\n","")
 		if i == "felis":
-			os.system("sudo rm /usr/bin/felis")
-			os.system("sudo mv "+os.getcwd()+"/felis/felis /usr/bin/")
-			os.system("sudo chmod 755 /usr/bin/felis")
+			os.system(sudo+"rm "+prefix+"/bin/felis")
+			os.system(sudo+"mv "+os.getcwd()+"/felis/felis "+prefix+"/bin/")
+			os.system(sudo+"chmod 755 "+prefix+"/bin/felis")
 		elif i == "kur.sh":
 			pass
 		elif i == "ekstra.py":
 			os.system("python3 "+os.getcwd()+"/felis/ekstra.py")
 		else:
-			os.system("sudo rm /usr/share/felis/"+i)
-			os.system("sudo mv "+os.getcwd()+"/felis/"+i+" /usr/share/felis/")
-			os.system("sudo chmod 755 /usr/share/felis/"+i)
+			os.system(sudo+"rm "+prefix+"/share/felis/"+i)
+			os.system(sudo+"mv "+os.getcwd()+"/felis/"+i+" "+prefix+"/share/felis/")
+			os.system(sudo+"chmod 755 "+prefix+"/share/felis/"+i)
 	print("\nFelis Aracı Başarıyla Güncellendi.")
 	os.system("rm -r felis")
