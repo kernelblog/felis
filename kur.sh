@@ -1,4 +1,4 @@
-if [ ! -n $PREFIX ] && [ $(id -g) -ne 0 ]
+if [ $(echo $PREFIX | wc -c) -lt 2 ] && [ $(id -g) -ne 0 ]
 then
 	echo "Bu komutu sadece root erişimiyle çalıştırabilirsiniz"
 	exit 1
@@ -27,7 +27,7 @@ $PIP_CMD install beautifulsoup4 requests PrettyTable youtube_dl
 
 SETUP_ROOT="/usr"
 
-if [ -n $PREFIX ]
+if [ $(echo $PREFIX | wc -c) -gt 2 ]
 then
 	SETUP_ROOT=$PREFIX
 fi

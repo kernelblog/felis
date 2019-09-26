@@ -1,5 +1,5 @@
 EXEC_ROOT="/usr"
-if [ -n $PREFIX ]
+if [ $(echo $PREFIX | wc -c) -gt 2 ]
 then
 	EXEC_ROOT=$PREFIX
 fi

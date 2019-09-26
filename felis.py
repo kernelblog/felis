@@ -17,12 +17,12 @@ def yardim():
 	print("<======KernelBlog.org======>\nKernelBlog Developer Team\nKernelBlog Geliştirici Ekibi\n")
 
 #Ana Bölüm
-prefix=os.getenv("PREFIX","")
-termux=len(prefix) > 1
+prefix = os.getenv("PREFIX","")
+termux = len(prefix) > 2
 if not termux:
-	prefix="/usr"
+	prefix = "/usr"
 
-sudo="" if termux else "sudo "
+sudo = "" if termux else "sudo "
 
 def internet_kontrol():
     url="http://www.google.com/"

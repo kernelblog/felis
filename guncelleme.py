@@ -13,7 +13,7 @@ url2 = "https://felis.kernelblog.org/felis/felis.zip"
 context = ssl._create_unverified_context()
 
 prefix=os.getenv("PREFIX","")
-termux=len(prefix) > 1
+termux=len(prefix) > 2
 if not termux:
 	prefix="/usr"
 

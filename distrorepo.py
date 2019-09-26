@@ -166,6 +166,11 @@ class distro(object):
         self.sirala(self.isimler1, 0)
 
 if __name__ == '__main__':
+    prefix = os.getenv("PREFIX","")
+    termux = len(prefix) > 2
+    if termux:
+    	print("\nTermux'da bu özelliği şu anda kullanamazsınız. İlerleyen zamanlarda uyarlanacaktır.\n")
+        sys.exit(0)
     k = distro()
     try:
         try:
