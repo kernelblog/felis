@@ -18,10 +18,8 @@ def yardim():
 
 #Ana Bölüm
 prefix=os.getenv("PREFIX","")
-termux=False
-if len(prefix) > 1:
-	termux=True
-else:
+termux=len(prefix) > 1
+if not termux:
 	prefix="/usr"
 
 sudo="" if termux else "sudo "
