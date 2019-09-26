@@ -19,7 +19,7 @@ if not termux:
 
 sudo="" if termux else "sudo "
 
-os.system(sudo+"pip3 install youtube-dl bs4 PrettyTable requests --upgrade")
+os.system(sudo+"pip3 install beautifulsoup4 requests PrettyTable youtube_dl --upgrade")
 
 try:
 	url_oku = urllib.request.urlopen(url)
