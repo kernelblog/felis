@@ -122,7 +122,7 @@ elif sys.argv[1]=="klon":
             f = open("arac.deb", 'wb')
             f.write(veri.read())
             f.close()
-            os.system("sudo dpkg -i paket.deb")
+            os.system(sudo+"dpkg -i paket.deb")
             os.system("rm paket.deb")
 
         elif targz != -1:
