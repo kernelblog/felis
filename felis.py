@@ -17,6 +17,15 @@ def yardim():
 	print("<======KernelBlog.org======>\nKernelBlog Developer Team\nKernelBlog Geliştirici Ekibi\n")
 
 #Ana Bölüm
+prefix=os.getenv("PREFIX","")
+termux=False
+if len(prefix) > 1:
+	termux=True
+else:
+	prefix="/usr"
+
+sudo="" if termux else "sudo "
+
 def internet_kontrol():
     url="http://www.google.com/"
     timeout=5
@@ -32,44 +41,44 @@ if len(sys.argv) < 2 or sys.argv[1]=="-y":
 		yardim()
 
 elif sys.argv[1]=="-g":
-	os.system("python3 /usr/share/felis/guncelleme.py")
+	os.system("python3 "+prefix+"/share/felis/guncelleme.py")
 
 elif sys.argv[1]=="-s":
-	os.system("sudo rm /usr/bin/felis")
+	os.system(sudo+"rm "+prefix+"/bin/felis")
 	print("\nFelis Başarıyla Kaldırıldı\n")
-	os.system("sudo rm -r /usr/share/felis/")
+	os.system(sudo+"rm -r "+prefix+"/share/felis/")
 
 elif sys.argv[1] == "-mp3":
     soru=input("\nGüncellemeler Kontrol Edilsin Mi? E/H: ")
     if soru == "e" or soru == "E":
-        os.system("python3 /usr/share/felis/guncelleme.py")
+        os.system("python3 "+prefix+"/share/felis/guncelleme.py")
     else:
         pass
-    os.system("python3 /usr/share/felis/mp.py -mp3 "+sys.argv[2])
+    os.system("python3 "+prefix+"/share/felis/mp.py -mp3 "+sys.argv[2])
 
 elif sys.argv[1] == "-mp4":
     soru=input("\nGüncellemeler Kontrol Edilsin Mi? E/H: ")
     if soru == "e" or soru == "E":
-        os.system("python3 /usr/share/felis/guncelleme.py")
+        os.system("python3 "+prefix+"/share/felis/guncelleme.py")
     else:
         pass
-    os.system("python3 /usr/share/felis/mp.py -mp4 "+sys.argv[2])
+    os.system("python3 "+prefix+"/share/felis/mp.py -mp4 "+sys.argv[2])
 
 elif sys.argv[1] == "-git":
     soru=input("\nGüncellemeler Kontrol Edilsin Mi? E/H: ")
     if soru == "e" or soru == "E":
-        os.system("python3 /usr/share/felis/guncelleme.py")
+        os.system("python3 "+prefix+"/share/felis/guncelleme.py")
     else:
         pass
-    os.system("python3 /usr/share/felis/githubmodul.py")
+    os.system("python3 "+prefix+"/share/felis/githubmodul.py")
 
 elif sys.argv[1] == "-depo":
     soru=input("\nGüncellemeler Kontrol Edilsin Mi? E/H: ")
     if soru == "e" or soru == "E":
-        os.system("python3 /usr/share/felis/guncelleme.py")
+        os.system("python3 "+prefix+"/share/felis/guncelleme.py")
     else:
         pass
-    os.system("python3 /usr/share/felis/distrorepo.py")
+    os.system("python3 "+prefix+"/share/felis/distrorepo.py")
 
 elif sys.argv[1]=="klon":
     context = ssl._create_unverified_context()
@@ -88,7 +97,7 @@ elif sys.argv[1]=="klon":
 
         soru=input("\nGüncellemeler Kontrol Edilsin Mi? E/H: ")
         if soru == "e" or soru == "E":
-            os.system("python3 /usr/share/felis/guncelleme.py")
+            os.system("python3 "+prefix+"/share/felis/guncelleme.py")
         else:
             pass
 
