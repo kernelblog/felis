@@ -12,16 +12,16 @@ class archdistro(object):
     def basla(self):
         self.mimari = os.popen("uname -m")
         self.mimari = list(self.mimari)
-        for i in self.mimari:
-            if i == "x86_64":
-                self.mimari1 = "x86_64/"
-            elif i == "aarch64":
-                self.mimari1 = "aarch64/"
-            elif i == "i686":
-                self.mimari1 = "i686/"
+        self.mimari.append(0)
+        """self.mimari = self.mimari[0].replace("[","")
+        self.mimari = self.mimari.replace("]","")
+        self.mimari = self.mimari.replace("\"","")
+        self.mimari = self.mimari.split()"""
+        self.mimari1 = self.mimari[0].replace("\n","")
         self.headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.3"}
         self.context = ssl._create_unverified_context()
         self.isimler = []
+        self.isimler1 = []
         self.isimler2 = []
         self.adresler = []
         self.blackarchadr = "http://ftp.linux.org.tr/blackarch/blackarch/os/"
@@ -34,17 +34,17 @@ class archdistro(object):
         print("\nAraç İndiriliyor...")
         self.istek = urllib.request.Request(url=self.xzadres, headers = self.headers)
         self.veri = urllib.request.urlopen(self.istek, context = self.context)
-        f = open(self.isimler1[self.secim-1], 'wb')
+        f = open(self.isimler2[self.secim-1], 'wb')
         f.write(self.veri.read())
         f.close()
-        os.system("sudo pacman -U "+self.isimler1[self.secim-1])
+        os.system("sudo pacman -U "+self.isimler2[self.secim-1])
         print("\nAraç başarıyla indirildi ve yüklendi.")
         self.soru = input("\nİndirilen dosya saklansın mı? E/H: ")
         if self.soru == "E" or self.soru == "e":
-            print("\nDosyanız şu dizine kaydedildi ---> "+os.getcwd()+"/"+self.isimler1[self.secim-1])
+            print("\nDosyanız şu dizine kaydedildi ---> "+os.getcwd()+"/"+self.isimler2[self.secim-1])
             pass
         else:
-            os.system("rm "+self.isimler1[self.secim-1])
+            os.system("rm "+self.isimler2[self.secim-1])
         print("Vazgeçme :D.\n")
         sys.exit(0)
 
@@ -83,7 +83,8 @@ class archdistro(object):
             if self.ara != -1:
                 if i[-3:] == ".xz":
                     self.isimler1.append("BlackArch --> "+i)
-                    self.adresler.append(self.blackarchadr+self.mimari1+i)
+                    self.isimler2.append(i)
+                    self.adresler.append(self.blackarchadr+self.mimari1+"/"+i)
             else:
                 pass
         self.sirala()
