@@ -11,6 +11,9 @@ then
 elif [ -f $PREFIX/bin/apt ]
 then
 	pkg install python git
+elif [ -f /usr/bin/pacman ]
+then
+	pacman -S --needed python3 python-pip python3-pip git
 fi
 
 PIP_CMD="pip3"
