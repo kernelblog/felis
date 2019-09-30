@@ -132,8 +132,12 @@ class debdistro(object):
         f = open(self.isimler4[self.secim-1], 'wb')
         f.write(self.veri.read())
         f.close()
-        os.system("sudo dpkg -i "+self.isimler4[self.secim-1])
-        os.system("sudo apt --fix-broken install")
+        if os.path.exists("/data/data/com.termux/files/usr/bin/apt") == True:
+            os.system("dpkg -i "+self.isimler4[self.secim-1])
+            os.system("apt --fix-broken install")
+        else:
+            os.system("sudo dpkg -i "+self.isimler4[self.secim-1])
+            os.system("sudo apt --fix-broken install")
         print("\nAraç başarıyla indirildi ve yüklendi.")
         self.soru = input("\nİndirilen dosya saklansın mı? E/H: ")
         if self.soru == "E" or self.soru == "e":
@@ -246,12 +250,7 @@ class debdistro(object):
         self.sirala(self.isimler1, 0)
 
 if __name__ == '__main__':
-    prefix = os.getenv("PREFIX","")
-    termux = len(prefix) > 2
-    if termux:
-        print("\nTermux'da bu özelliği şu anda kullanamazsınız. İlerleyen zamanlarda uyarlanacaktır.\n")
-        sys.exit(0)
-    if os.path.exists("/usr/bin/apt") == True:
+    if os.path.exists("/usr/bin/apt") == True or os.path.exists("/data/data/com.termux/files/usr/bin/apt") == True:
         k = debdistro()
     elif os.path.exists("/usr/bin/pacman") == True:
         k = archdistro()

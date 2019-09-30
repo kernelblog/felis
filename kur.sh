@@ -7,13 +7,13 @@ fi
 if [ -f /usr/bin/apt ]
 then
 	apt update
-	apt install python3 python3-pip git
+	apt install python3 python3-pip git ffmpeg
 elif [ -f $PREFIX/bin/apt ]
 then
-	pkg install python git
+	pkg install python git ffmpeg
 elif [ -f /usr/bin/pacman ]
 then
-	pacman -S --needed python3 python-pip python3-pip git
+	pacman -S --needed python3 python-pip python3-pip git ffmpeg
 fi
 
 PIP_CMD="pip3"
