@@ -27,7 +27,7 @@ except urllib.error.URLError as e:
 	print("\nLütfen İnternet Bağlantınızı Kontrol Ediniz!\n")
 	sys.exit(0)
 soup = BeautifulSoup(url_oku, 'html.parser')
-if str(soup) == "27/09/2019":
+if str(soup) == "30/09/2019":
 	print("\nFelis Aracı Güncel.\n")
 else:
 	veri = urllib.request.urlopen(url2, context = context)
